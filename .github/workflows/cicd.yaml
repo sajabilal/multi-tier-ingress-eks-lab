@@ -132,8 +132,8 @@ jobs:
 
       - name: Set images to new SHA tag
         run: |
-          kubectl -n "$K8S_NAMESPACE" set image deployment/backend backend="${{ steps.tag.outputs.backend_image }}"
-          kubectl -n "$K8S_NAMESPACE" set image deployment/frontend frontend="${{ steps.tag.outputs.frontend_image }}"
+          kubectl -n "$K8S_NAMESPACE" set image deployment/backend-deployment backend="${{ steps.tag.outputs.backend_image }}"
+          kubectl -n "$K8S_NAMESPACE" set image deployment/frontend-deployment frontend="${{ steps.tag.outputs.frontend_image }}"
 
       # Make sure the ingress host matches your Route 53 record (idempotent patch)
       - name: Patch Ingress host if needed
