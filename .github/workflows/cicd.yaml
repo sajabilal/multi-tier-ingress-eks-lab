@@ -109,8 +109,8 @@ jobs:
       - name: Apply base k8s (safe re-apply)
         run: |
           kubectl apply -f k8s/namespace.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-service.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-service.yaml
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-deployment.yaml
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-deployment.yaml
           kubectl apply -n "$K8S_NAMESPACE" -f k8s/ingress.yaml
 
       # Update deployments to the newly-pushed images using this commit's SHA
