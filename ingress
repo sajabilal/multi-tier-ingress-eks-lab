@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  # namespace: demo-saja   # <- uncomment if you use a namespace
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: saja.app.diogohack.shop
+    http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend
+            port:
+              number: 3000
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-deployment-service
+            port:
+              number: 80
