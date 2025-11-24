@@ -109,9 +109,9 @@ jobs:
       - name: Apply base k8s (safe re-apply)
         run: |
           kubectl apply -f k8s/namespace.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-deployment.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-deployment.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/ingress.yaml
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-deployment
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-deployment
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/ingress
 
       # Update deployments to the newly-pushed images using this commit's SHA
       - name: Compute image tags
@@ -127,8 +127,8 @@ jobs:
         run: |
           # If these files exist from prior lab, you can re-apply safely.
           # They must declare metadata.name: backend / frontend
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-deployment.yaml
-          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-deployment.yaml
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/backend-deployment
+          kubectl apply -n "$K8S_NAMESPACE" -f k8s/frontend-deployment
 
       - name: Set images to new SHA tag
         run: |
